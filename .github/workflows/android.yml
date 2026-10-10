@@ -26,7 +26,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --no-daemon -x validateSigningDebug
+      run: ./gradlew assembleDebug --no-daemon -Pandroid.injected.signing.store.file=debug.keystore -Pandroid.injected.signing.store.password=android -Pandroid.injected.signing.key.alias=androiddebugkey -Pandroid.injected.signing.key.password=android
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
