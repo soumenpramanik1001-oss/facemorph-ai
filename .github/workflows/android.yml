@@ -18,14 +18,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Generate Gradle Wrapper
-        run: gradle wrapper
-
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: chmod +x gradlew || true
 
-      - name: Build APK with Gradle
-        run: ./gradlew assembleDebug -Pandroid.injected.signing.store.file="" -Djava.awt.headless=true --stacktrace
+      - name: Build APK with Gradle System
+        run: gradle assembleDebug -Pandroid.injected.signing.store.file="" -Djava.awt.headless=true
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
